@@ -106,4 +106,12 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+        
+        public function actionTest(){
+            echo date('Y-m-d H:i:s');
+        }
+        
+        
+        
+        
 }
