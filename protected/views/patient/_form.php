@@ -34,7 +34,10 @@
         ?>
         <?php echo $form->labelEx($model, 'prename'); ?>
         <?php
-        echo $form->dropDownList($model, 'prename', $list);
+        echo $form->dropDownList($model, 'prename', $list,array(
+            'prompt'=>'--เลือก--',
+            'style'=>'width:200px'
+        ));
         ?>
 
     </div>
