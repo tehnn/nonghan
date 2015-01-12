@@ -49,7 +49,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name' => 'prename',
             'value' => function($data, $row) {
                 echo $data->mprename->name;
-            }
+            },
+             'filter'=>  CHtml::listData(Mprename::model()->findAll(),'id','name')
         ),
         'fname',
         'lname',
