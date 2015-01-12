@@ -13,7 +13,8 @@ echo $date;
 <?php
 
    echo CHtml::link('ลิ้งอีกแบบ',array('my/test3',
-       'no'=>'aaaaaa'
+       'no'=>'aaaaaa',
+       'no1'=>'ssddsd'
    ));
     
 ?>
