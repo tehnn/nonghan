@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Patients'=>array('index'),
-	'Create',
+	'ลงทะเบียน',
 );
 
 $this->menu=array(
@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Patient</h1>
+<h1>ลงทะเบียนผู้ป่วยรายใหม่</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

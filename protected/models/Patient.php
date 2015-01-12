@@ -31,6 +31,7 @@ class Patient extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
+            array('cid, prename, fname, lname, sex, disease','required'),
             array('age', 'numerical', 'integerOnly' => true),
             array('cid, prename, fname, lname, sex, disease, reg_date, user', 'length', 'max' => 255),
             // The following rule is used by search().
