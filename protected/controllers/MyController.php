@@ -38,6 +38,19 @@ class MyController extends Controller {
          ));
          
      }
+     
+     
+     public function actionTest3($no){
+         
+         $data = $no;
+         
+         $this->render('test3',array(
+             'data'=>$data
+         ));
+         
+     }
+     
+     
 
 }
 
