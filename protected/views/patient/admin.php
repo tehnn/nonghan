@@ -2,14 +2,14 @@
 /* @var $this PatientController */
 /* @var $model Patient */
 
-$this->breadcrumbs=array(
-	'Patients'=>array('index'),
-	'Manage',
+$this->breadcrumbs = array(
+    'Patients' => array('index'),
+    'Manage',
 );
 
-$this->menu=array(
-	array('label'=>'List Patient', 'url'=>array('index')),
-	array('label'=>'Create Patient', 'url'=>array('create')),
+$this->menu = array(
+    array('label' => 'List Patient', 'url' => array('index')),
+    array('label' => 'Create Patient', 'url' => array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -28,33 +28,46 @@ $('.search-form form').submit(function(){
 
 
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
+    <?php
+    $this->renderPartial('_search', array(
+        'model' => $model,
+    ));
+    ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'patient-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'cid',
-		'prename',
-		'fname',
-		'lname',
-		'sex',
-		
-		'age',
-		'disease',
-		'reg_date',
-            /*
-		'user',
-		*/
-		array(
-			'class'=>'CButtonColumn',
-		),
-	),
-)); ?>
+<?php
+$this->widget('zii.widgets.grid.CGridView', array(
+    'id' => 'patient-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'columns' => array(
+        'id',
+        'cid',
+        array(
+            'name' => 'prename',
+            'value' => function($data, $row) {
+                echo $data->mprename->name;
+            }
+        ),
+        'fname',
+        'lname',
+        'sex',
+        'age',
+        array(
+            'name' => 'disease',
+            'value' => function ($data) {
+                echo $data->mdisease->disease;
+            }
+        ),
+        'reg_date',
+        /*
+          'user',
+         */
+        array(
+            'class' => 'CButtonColumn',
+        ),
+    ),
+));
+?>
