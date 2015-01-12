@@ -40,7 +40,7 @@ class MyController extends Controller {
      }
      
      
-     public function actionTest3($no=NULL){
+     public function actionTest3($no=NULL,$d=null){
          
          $data = $no;
          
