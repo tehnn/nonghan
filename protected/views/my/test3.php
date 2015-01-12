@@ -4,3 +4,16 @@ $date = date('H:i:s');
 echo $date;
 
 ?>
+<hr>
+<a href="<?php echo $this->createUrl('test3');  ?>">link ไปที่ action ไม่ส่งค่าไปด้วย</a> <br>
+<a href="<?php echo $this->createUrl('test3',array('no'=>'999999'));  ?>">link ไปที่ action ส่งค่าไปด้วย</a><br>
+
+<a href="<?php echo Yii::app()->createUrl('my/test3',array('no'=>'sdddddd'));  ?>">link ไปที่ action ไม่ส่งค่าไปด้วย</a> <br>
+
+
+<hr>
+<?php
+    echo $data;
+
+?>
+
