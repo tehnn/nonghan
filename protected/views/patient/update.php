@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Patient <?php echo $model->id; ?></h1>
+<h1>แก้ไขผู้ป่วย</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
