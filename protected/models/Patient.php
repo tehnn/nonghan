@@ -49,7 +49,8 @@ class Patient extends CActiveRecord {
         return array(
             
             'mprename'=> array(self::BELONGS_TO,'Mprename','prename'),
-            'mdisease'=>array(self::BELONGS_TO,'Mdisease','disease')
+            'mdisease'=>array(self::BELONGS_TO,'Mdisease','disease'),
+            'msex'=>array(self::BELONGS_TO,'Msex','sex'),
             
         );
     }
@@ -88,17 +89,19 @@ class Patient extends CActiveRecord {
         // @todo Please modify the following code to remove attributes that should not be searched.
 
         $criteria = new CDbCriteria;
+         $criteria->with = array('mdisease', 'mprename','msex');
 
         $criteria->compare('id', $this->id);
         $criteria->compare('cid', $this->cid, true);
-        $criteria->compare('prename', $this->prename, true);
+        $criteria->compare('mprename.name', $this->prename, true);
         $criteria->compare('fname', $this->fname, true);
         $criteria->compare('lname', $this->lname, true);
-        $criteria->compare('sex', $this->sex, true);
+        $criteria->compare('msex.name', $this->sex, true);
         $criteria->compare('age', $this->age);
-        $criteria->compare('disease', $this->disease, true);
+        $criteria->compare('mdisease.disease', $this->disease, true);
         $criteria->compare('reg_date', $this->reg_date, true);
         $criteria->compare('user', $this->user, true);
+       
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

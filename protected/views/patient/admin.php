@@ -53,8 +53,18 @@ $this->widget('zii.widgets.grid.CGridView', array(
         ),
         'fname',
         'lname',
-        'sex',
-        'age',
+       array(
+            'name' => 'sex',
+            'value' => function ($data) {
+                echo $data->msex->name;
+            }
+        ),
+        array(
+            'name'=>'age',
+            'value'=>  function ($data){
+                echo $data->age." ปี";
+            }
+        ),
         array(
             'name' => 'disease',
             'value' => function ($data) {
