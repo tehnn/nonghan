@@ -18,19 +18,14 @@
             <div class="col-md-6">
                 <!-- AREA CHART -->
                 <div class="box box-primary">
-                    
+
                     <div class="box-body chart-responsive">
                         <div class="chart" id="revenue-chart" style="height: 400px;">
-                            <?php
-                            $piedata = array();
-                            array_push($piedata, array('บริษัท A', 20));
-                            array_push($piedata, array('บริษัท B', 10));
-                            array_push($piedata, array('บริษัท C', 20));
-                            
+                            <?php                         
 
                             $this->Widget('ext.highcharts.HighchartsWidget', array(
                                 'options' => array(
-                                    'title' => array('text' => 'จำนวน'),
+                                    'title' => array('text' => 'จำนวนผู้มารับบริการ'),
                                     //'subtitle' => array('text' => 'kkkkkkkkkkk'),
                                     'credits' => array('enabled' => false),
                                     'series' => array(array(
@@ -50,7 +45,7 @@
             <div class="col-md-6">
                 <!-- LINE CHART -->
                 <div class="box box-info">
-                    
+
                     <div class="box-body chart-responsive">
                         <div class="chart" id="line-chart" style="height: 400px;">
                             <?php

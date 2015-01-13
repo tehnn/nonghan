@@ -75,16 +75,27 @@ class MyController extends Controller {
                 'd2' => $d2,
                 'sql' => $sql
             ));
-        }else{
-              $this->render('err',array(
-                  'sql'=>$sql
-              ));
+        } else {
+            $this->render('err', array(
+                'sql' => $sql
+            ));
         }
     }
+
+    public function actionChart() {
+        $a = 20;
+        $piedata = array();
+        array_push($piedata, array('รพ.สต. a', $a));
+        array_push($piedata, array('รพ.สต. b', 10));
+        array_push($piedata, array('รพ.สต. c', 20));
+        
+        $this->render('chart',array(
+            'piedata'=>$piedata
+        ));
+    }
     
-    
-    public function actionChart(){
-        $this->render('chart');
+    public function actionPyramid(){
+        $this->render('pyramid');
     }
 
 }
