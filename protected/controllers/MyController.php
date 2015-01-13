@@ -47,13 +47,22 @@ class MyController extends Controller {
     
 
     public function actionRpt() {
-        $sql = "select * from patient";
+        
+        $sex = '2';
+        
+        $sql = "select * from patient where sex=$sex";
+        
+        
         $rawData = Yii::app()->db->createCommand($sql)->queryAll();
         
         $dataProvider = new CArrayDataProvider($rawData,array(
             'sort'=>array(
                 'attributes'=> array_keys($rawData[0])
+            ),
+            'pagination'=>array(
+                'pageSize'=>2
             )
+            
         ));
         
         $this->render('rpt',array(
