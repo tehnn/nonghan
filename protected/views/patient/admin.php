@@ -48,7 +48,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => function($data, $row) {
                 echo $row + 1;
             },
-            'htmlOptions' => array('style' => 'width: 30px;'),
+            'htmlOptions' => array('style' => 'width: 100px;'),
         ),
         'id',
         'cid',
