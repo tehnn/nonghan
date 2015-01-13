@@ -170,4 +170,16 @@ class PatientController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        public function actionTestmodel(){
+            $model = new Msex();
+            $model->id ='';
+            $model->name ="เด็กชาย";
+            if($model->save()){
+                echo "Insert Ok!!!";
+            }
+            
+        }
+        
+        
 }
