@@ -20,23 +20,7 @@ class SiteController extends Controller {
         );
     }
 
-    public function filters() {
-        return array(
-            'accessControl',
-        );
-    }
-
-    public function accessRules() {
-        return array(
-            array(
-                'deny',
-                'expression' => function() {
-                    return strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== FALSE;
-                },
-                'message' => "You're using the IE browser, sorry.",
-            )
-        );
-    }
+    
 
     /**
      * This is the default 'index' action that is invoked
