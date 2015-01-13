@@ -91,9 +91,9 @@ class Patient extends CActiveRecord {
         $criteria = new CDbCriteria;
          $criteria->with = array('mdisease', 'mprename','msex');
 
-        $criteria->compare('id', $this->id);
+        $criteria->compare('t.id', $this->id);
         $criteria->compare('cid', $this->cid, true);
-        $criteria->compare('mprename.name', $this->prename, true);
+        $criteria->compare('prename', $this->prename, true);
         $criteria->compare('fname', $this->fname, true);
         $criteria->compare('lname', $this->lname, true);
         $criteria->compare('msex.name', $this->sex, true);

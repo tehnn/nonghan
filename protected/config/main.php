@@ -9,7 +9,7 @@ return array(
     'name' => 'คปสอ.หนองหาน',
     'timeZone' => 'Asia/Bangkok',
     'language' => 'th',
-    'theme'=>'adminlte',
+    'theme' => 'adminlte',
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
@@ -29,6 +29,11 @@ return array(
     ),
     // application components
     'components' => array(
+        'clientScript' => array(
+            'scriptMap' => array(
+                'jquery.js' => 'js/jquery-2.0.2.min.js',
+            ),
+        ),
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
