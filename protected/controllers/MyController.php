@@ -51,35 +51,29 @@ class MyController extends Controller {
         $d1 = '';
         $d2 = '';
 
-        if (isset($_POST['d1']) and isset($_POST['d2'])) {
+        if (!empty($_POST['d1']) and ! empty($_POST['d2'])) {
             $d1 = $_POST['d1'];
             $d2 = $_POST['d2'];
-
             $sql = "select * from patient where reg_date between '$d1' and '$d2'";
         }
 
         $rawData = Yii::app()->db->createCommand($sql)->queryAll();
-        if (count($rawData) > 0) {
-            $dataProvider = new CArrayDataProvider($rawData, array(
-                'sort' => array(
-                    'attributes' => array_keys($rawData[0])
-                ),
-                'pagination' => array(
-                    'pageSize' => 2
-                )
-            ));
 
-            $this->render('rpt', array(
-                'model' => $dataProvider,
-                'd1' => $d1,
-                'd2' => $d2,
-                'sql' => $sql
-            ));
-        } else {
-            $this->render('err', array(
-                'sql' => $sql
-            ));
-        }
+        $dataProvider = new CArrayDataProvider($rawData, array(
+            'sort' => array(
+                'attributes' => count($rawData) > 0 ? array_keys($rawData[0]) : ''
+            ),
+            'pagination' => array(
+                'pageSize' => 2
+            )
+        ));
+
+        $this->render('rpt', array(
+            'model' => $dataProvider,
+            'd1' => $d1,
+            'd2' => $d2,
+            'sql' => $sql
+        ));
     }
 
     public function actionChart() {
@@ -88,13 +82,13 @@ class MyController extends Controller {
         array_push($piedata, array('รพ.สต. a', $a));
         array_push($piedata, array('รพ.สต. b', 10));
         array_push($piedata, array('รพ.สต. c', 20));
-        
-        $this->render('chart',array(
-            'piedata'=>$piedata
+
+        $this->render('chart', array(
+            'piedata' => $piedata
         ));
     }
-    
-    public function actionPyramid(){
+
+    public function actionPyramid() {
         $this->render('pyramid');
     }
 
