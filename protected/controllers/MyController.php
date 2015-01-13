@@ -14,43 +14,44 @@ class MyController extends Controller {
             'b' => 'sssss',
             'c' => 'xxxx'
         );
-        
+
         echo $arr2['b'];
         print_r($arr2);
-        
+
         echo "<hr>";
-        
+
         $mycar = new Car();
         echo $mycar->color;
         $mycar->gear = "M";
         echo $mycar->gear;
-        
-        
+    }
+
+    public function actionTest2() {
+
+        $date = date('Y-m-d H:i:s');
+
+        $this->render('test2', array(
+            'data' => $date,
+            'id' => 'aaaaaaa'
+        ));
+    }
+
+    public function actionTest3($no = NULL, $d = null) {
+
+        $data = $no;
+
+        $this->render('test3', array(
+            'data' => $data
+        ));
     }
     
-     public function actionTest2() {
-         
-         $date = date('Y-m-d H:i:s');
-         
-         $this->render('test2',array(
-             'data'=>$date,
-             'id'=>'aaaaaaa'
-         ));
-         
-     }
-     
-     
-     public function actionTest3($no=NULL,$d=null){
-         
-         $data = $no;
-         
-         $this->render('test3',array(
-             'data'=>$data
-         ));
-         
-     }
-     
-     
+
+    public function actionRpt() {
+        $sql = "select * from patient";
+        $rawData = Yii::app()->db->createCommand($sql)->queryAll();
+        echo "<pre>";
+        print_r($rawData);
+    }
 
 }
 
