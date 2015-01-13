@@ -44,10 +44,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'filter' => $model,
     'columns' => array(
         array(
-            'header'=>'#',
-            'value'=>function($data,$row){
-                echo $row+1;
-            }
+            'header' => '#',
+            'value' => function($data, $row) {
+                echo $row + 1;
+            },
+            'htmlOptions' => array('style' => 'width: 30px;'),
         ),
         'id',
         'cid',
