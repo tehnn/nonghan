@@ -93,7 +93,7 @@ class PatientController extends Controller {
 
         if (isset($_POST['Patient'])) {
             $model->attributes = $_POST['Patient'];
-            $model->reg_date = date('Y-m-d H:i:s');
+            $model->reg_date = date('Y-m-d');
 
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));

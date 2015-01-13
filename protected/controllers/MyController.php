@@ -44,32 +44,37 @@ class MyController extends Controller {
             'data' => $data
         ));
     }
-    
 
     public function actionRpt() {
-        
-        $sex = '2';
-        
-        $sql = "select * from patient where sex=$sex";
-        
-        
+
+        $sql = "select * from patient";
+        $d1 = '';
+        $d2 = '';
+
+        if (isset($_POST['d1']) and isset($_POST['d2'])) {
+            $d1 = $_POST['d1'];
+            $d2 = $_POST['d2'];
+
+            $sql = "select * from patient where reg_date between '$d1' and '$d2'";
+        }
+
         $rawData = Yii::app()->db->createCommand($sql)->queryAll();
-        
-        $dataProvider = new CArrayDataProvider($rawData,array(
-            'sort'=>array(
-                'attributes'=> array_keys($rawData[0])
+
+        $dataProvider = new CArrayDataProvider($rawData, array(
+            'sort' => array(
+                'attributes' => array_keys($rawData[0])
             ),
-            'pagination'=>array(
-                'pageSize'=>2
+            'pagination' => array(
+                'pageSize' => 2
             )
-            
         ));
-        
-        $this->render('rpt',array(
-            'model'=>$dataProvider
+
+        $this->render('rpt', array(
+            'model' => $dataProvider,
+            'd1' => $d1,
+            'd2' => $d2,
+            'sql'=>$sql
         ));
-        
-        
     }
 
 }
