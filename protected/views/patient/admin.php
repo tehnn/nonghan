@@ -36,13 +36,19 @@ $('.search-form form').submit(function(){
     ));
     ?>
 </div><!-- search-form -->
-
+<h1>ทดสอบ PULL</h1>
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'patient-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
     'columns' => array(
+        array(
+            'header'=>'#',
+            'value'=>function($data,$row){
+                echo $row+1;
+            }
+        ),
         'id',
         'cid',
         array(
@@ -50,20 +56,20 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value' => function($data, $row) {
                 echo $data->mprename->name;
             },
-             'filter'=>  CHtml::listData(Mprename::model()->findAll(),'id','name')
+            'filter' => CHtml::listData(Mprename::model()->findAll(), 'id', 'name')
         ),
         'fname',
         'lname',
-       array(
+        array(
             'name' => 'sex',
             'value' => function ($data) {
                 echo $data->msex->name;
             }
         ),
         array(
-            'name'=>'age',
-            'value'=>  function ($data){
-                echo $data->age." ปี";
+            'name' => 'age',
+            'value' => function ($data) {
+                echo $data->age . " ปี";
             }
         ),
         array(
