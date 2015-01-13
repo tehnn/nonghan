@@ -70,6 +70,8 @@ class PatientController extends Controller
 		if(isset($_POST['Patient']))
 		{
 			$model->attributes=$_POST['Patient'];
+                        $model->reg_date = date('Y-m-d H:i:s');
+                        
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -172,12 +174,21 @@ class PatientController extends Controller
 	}
         
         public function actionTestmodel(){
+            /*
             $model = new Msex();
             $model->id ='';
             $model->name ="เด็กชาย";
             if($model->save()){
                 echo "Insert Ok!!!";
-            }
+            }*/
+            
+            $model = Msex::model()->findByPk(4);
+            /*
+            $model->name = "เด็กหญิง";
+            $model->update();
+             
+             */
+            $model->delete();
             
         }
         

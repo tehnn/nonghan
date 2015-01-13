@@ -85,11 +85,7 @@
 
     </div>
 
-    <div class="row">
-        <?php echo $form->labelEx($model, 'reg_date'); ?>
-        <?php echo $form->textField($model, 'reg_date', array('size' => 60, 'maxlength' => 255)); ?>
-        <?php echo $form->error($model, 'reg_date'); ?>
-    </div>
+   
 
    
     <div class="row buttons">
