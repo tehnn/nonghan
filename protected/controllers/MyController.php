@@ -81,6 +81,11 @@ class MyController extends Controller {
               ));
         }
     }
+    
+    
+    public function actionChart(){
+        $this->render('chart');
+    }
 
 }
 
