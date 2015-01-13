@@ -63,9 +63,9 @@ $('.search-form form').submit(function(){
                     'value' => function($data, $row) {
                         echo $row + 1;
                     },
-                    'htmlOptions' => array('style' => 'width: 100px;'),
+                   
                 ),
-                'id',
+                //'id',
                 'cid',
                 array(
                     'name' => 'prename',
@@ -94,7 +94,7 @@ $('.search-form form').submit(function(){
                         echo $data->mdisease->disease;
                     }
                 ),
-                'reg_date',
+                //'reg_date',
                 /*
                   'user',
                  */

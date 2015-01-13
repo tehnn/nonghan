@@ -4,6 +4,9 @@
         <meta charset="UTF-8">
         <title>AdminLTE | Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+
+
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
@@ -23,7 +26,7 @@
         <header class="header">
             <a href="index.html" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                <?=Yii::app()->name?>
+                <?= Yii::app()->name ?>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -42,10 +45,10 @@
                                 <i class="fa fa-envelope"></i>
                                 <span class="label label-success">
                                     <?php
-                                        $data = Patient::model()->findAll('sex=2 and prename=1');
-                                        echo count($data);
+                                    $data = Patient::model()->findAll('sex=2 and prename=1');
+                                    echo count($data);
                                     ?>
-                                    
+
                                 </span>
                             </a>
                             <ul class="dropdown-menu">
@@ -235,44 +238,40 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
                                 <span>
-                                    <?php if(Yii::app()->user->isGuest):?>
-                                    Guest
+                                    <?php
+                                    $isNotLogon = Yii::app()->user->isGuest;
+                                    ?>
+                                    <?php if ($isNotLogon): ?>
+                                        Guest
                                     <?php else: ?>
-                                    <?php echo Yii::app()->user->name; ?>
-                                    <?php endif;?>
-                                    
+                                        <?php echo Yii::app()->user->name; ?>
+                                    <?php endif; ?>
+
                                     <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
                                     <img src="img/avatar3.png" class="img-circle" alt="User Image" />
-                                    <p>
-                                        Jane Doe - Web Developer
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
+
                                 </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </li>
+
+
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <?php if ($isNotLogon):  ?>
+                                        <a href="<?=Yii::app()->createUrl('site/login')?>" class="btn btn-default btn-flat">Sign In</a>
+                                        <?php else: ?>
+                                         <a href="<?=Yii::app()->createUrl('site/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
+                                        <?php endif; ?>
                                     </div>
                                 </li>
+
+
                             </ul>
                         </li>
                     </ul>
@@ -308,7 +307,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="<?php echo Yii::app()->createUrl('patient/admin');?>">
+                            <a href="<?php echo Yii::app()->createUrl('patient/admin'); ?>">
                                 <i class="fa fa-dashboard"></i> <span>รายชื่อ</span>
                             </a>
                         </li>
@@ -395,9 +394,9 @@
                 </section>
                 <!-- /.sidebar -->
             </aside>
-            
-            <?=$content?>
-           
+
+            <?= $content ?>
+
         </div><!-- ./wrapper -->
 
 
@@ -409,7 +408,7 @@
         <script src="js/bootstrap.min.js" type="text/javascript"></script>      
         <!-- AdminLTE App -->
         <script src="js/AdminLTE/app.js" type="text/javascript"></script>
-        
+
         <script src="js/bootbox.min.js" type="text/javascript"></script>
 
     </body>
