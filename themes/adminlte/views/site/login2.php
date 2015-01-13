@@ -30,20 +30,20 @@
                 ),
             ));
             ?>
-            
+
             <div class="body bg-gray">
                 <div class="form-group">
-                    <?php echo $form->textField($model, 'username',array('class'=>'form-control','placeholder'=>'UserName')); ?>
+                    <?php echo $form->textField($model, 'username', array('class' => 'form-control', 'placeholder' => 'UserName')); ?>
                     <?php echo $form->error($model, 'username'); ?>
                 </div>
                 <div class="form-group">
-                    
-                    <?php echo $form->passwordField($model,'password',array('class'=>'form-control','placeholder'=>'Password')); ?>
-		<?php echo $form->error($model,'password'); ?>
-                    
+
+                    <?php echo $form->passwordField($model, 'password', array('class' => 'form-control', 'placeholder' => 'Password')); ?>
+                    <?php echo $form->error($model, 'password'); ?>
+
                 </div>          
                 <div class="form-group">
-                    <?php echo $form->checkBox($model,'rememberMe'); ?> Remember me
+                    <?php echo $form->checkBox($model, 'rememberMe'); ?> Remember me
                 </div>
             </div>
             <div class="footer">  
