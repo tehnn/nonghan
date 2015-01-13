@@ -14,8 +14,8 @@
 
     <!-- Main content -->
     <section class="content">
-        
-      
+
+
         <?php
         /* @var $this PatientController */
         /* @var $model Patient */
@@ -25,14 +25,11 @@
             'Manage',
         );
 
-     
+
 
         Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
+
+$('#search-form').submit(function(){
 	$('#patient-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
@@ -43,15 +40,24 @@ $('.search-form form').submit(function(){
 
 
 
-        <?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
-        <div class="search-form" style="display:none">
-            <?php
-            $this->renderPartial('_search', array(
-                'model' => $model,
-            ));
-            ?>
-        </div><!-- search-form -->
-        <a class="btn btn-primary btn-flat" href="<?=$this->createUrl('create')?>"><i class="glyphicon glyphicon-plus"></i> เพิ่มข้อมูล</a>
+        <div class="row">
+            <div class="col-sm-3">
+                <a class="btn btn-primary btn-flat" href="<?= $this->createUrl('create') ?>"><i class="glyphicon glyphicon-plus"></i> เพิ่มข้อมูล</a>
+            </div>
+            <div class="col-sm-3">
+                <?php
+                $form = $this->beginWidget('CActiveForm', array(
+                    'action' => Yii::app()->createUrl($this->route),
+                    'method' => 'get',
+                    'id'=>'search-form'
+                ));
+                ?>
+                <?php echo $form->textField($model, 'findtext'); ?>
+                <button type="submit" class="btn btn-flat btn-danger">ค้นหา</button>
+                <?php $this->endWidget(); ?>
+            </div>
+        </div>
+        <br>
         <?php
         $this->widget('zii.widgets.grid.CGridView', array(
             'id' => 'patient-grid',
@@ -63,7 +69,6 @@ $('.search-form form').submit(function(){
                     'value' => function($data, $row) {
                         echo $row + 1;
                     },
-                   
                 ),
                 //'id',
                 'cid',
@@ -105,7 +110,7 @@ $('.search-form form').submit(function(){
         ));
         ?>
 
-              
+
 
     </section><!-- /.content -->
 </aside><!-- /.right-side -->

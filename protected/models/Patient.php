@@ -14,9 +14,10 @@
  * @property string $disease
  * @property string $reg_date
  * @property string $user
+ * @property string $findtext
  */
 class Patient extends CActiveRecord {
-
+    public $findtext;
     /**
      * @return string the associated database table name
      */
@@ -36,7 +37,7 @@ class Patient extends CActiveRecord {
             array('cid, prename, fname, lname, sex, disease, reg_date, user', 'length', 'max' => 255),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, cid, prename, fname, lname, sex, age, disease, reg_date, user', 'safe', 'on' => 'search'),
+            array('id,findtext,cid, prename, fname, lname, sex, age, disease, reg_date, user', 'safe', 'on' => 'search'),
         );
     }
 
@@ -101,6 +102,9 @@ class Patient extends CActiveRecord {
         $criteria->compare('mdisease.disease', $this->disease, true);
         $criteria->compare('reg_date', $this->reg_date, true);
         $criteria->compare('user', $this->user, true);
+        if($this->findtext){
+            $criteria->compare('concat(fname,lname,cid)',  $this->findtext,TRUE);
+        }
        
 
         return new CActiveDataProvider($this, array(
