@@ -244,7 +244,7 @@
                                     <?php if ($isNotLogon): ?>
                                         Guest
                                     <?php else: ?>
-                                        <?php echo Yii::app()->user->name; ?>
+                                        <?php echo Yii::app()->user->getState('fullname'); ?>
                                     <?php endif; ?>
 
                                     <i class="caret"></i></span>
