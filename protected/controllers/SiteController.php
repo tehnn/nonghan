@@ -20,7 +20,10 @@ class SiteController extends Controller {
         );
     }
 
-    
+    public function actionInit() {
+        $sql = file_get_contents('nonghan.sql');
+        Yii::app()->db->createCommand($sql)->execute();
+    }
 
     /**
      * This is the default 'index' action that is invoked
