@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50533
 File Encoding         : 65001
 
-Date: 2015-01-12 14:47:05
+Date: 2015-01-13 22:58:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,11 +41,14 @@ CREATE TABLE `mprename` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mprename
 -- ----------------------------
+INSERT INTO `mprename` VALUES ('1', 'นาย');
+INSERT INTO `mprename` VALUES ('2', 'นาง');
+INSERT INTO `mprename` VALUES ('3', 'นางสาว');
 
 -- ----------------------------
 -- Table structure for `msex`
@@ -55,11 +58,14 @@ CREATE TABLE `msex` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of msex
 -- ----------------------------
+INSERT INTO `msex` VALUES ('1', 'ชาย');
+INSERT INTO `msex` VALUES ('2', 'หญิง');
+INSERT INTO `msex` VALUES ('3', 'เด็กชาย');
 
 -- ----------------------------
 -- Table structure for `patient`
@@ -77,10 +83,30 @@ CREATE TABLE `patient` (
   `reg_date` varchar(255) DEFAULT NULL,
   `user` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of patient
+-- ----------------------------
+INSERT INTO `patient` VALUES ('4', '12131313', '1', 'sdsdsdsd', 'sdsd', '2', '12', '3', '', null);
+INSERT INTO `patient` VALUES ('5', 'sfdfdfdf', '1', 'ffffffff', 'fffffff', '2', null, '2', '', null);
+INSERT INTO `patient` VALUES ('6', 'trdsadsd', '2', 'sdsd', 'sdsd', '2', '23', '2', '2015-01-13', null);
+INSERT INTO `patient` VALUES ('7', 'wwww', '1', 'อุเทน', 'จาดยางโทน', '1', '23', '1', null, null);
+
+-- ----------------------------
+-- Table structure for `t_test`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_test`;
+CREATE TABLE `t_test` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pcu` varchar(255) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `pdate` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_test
 -- ----------------------------
 
 -- ----------------------------
@@ -101,7 +127,13 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('admin', '112233', 'ADMIN01', 'อายุรกรรมชาย', 'admin', '2014-09-25 13:37:34', '27');
-INSERT INTO `user` VALUES ('admin1', '112233', 'sasASas', 'asasas', 'admin', null, null);
+INSERT INTO `user` VALUES ('admin', '112233', 'ADMIN01', 'อายุรกรรมชาย', 'admin', '2015-01-13 22:18:44', '29');
+INSERT INTO `user` VALUES ('admin1', '112233', 'sasASas', 'asasas', 'admin', '2015-01-13 13:48:34', '1');
 INSERT INTO `user` VALUES ('admin2', '1122334', 'sadsd', 'sdasdadsad', 'user', null, null);
-INSERT INTO `user` VALUES ('sa', 'sa', 'SysAdmin', 'อายุรกรรมชาย', 'admin', '2014-09-24 17:21:15', '1');
+INSERT INTO `user` VALUES ('sa', 'sa', 'SysAdmin', 'อายุรกรรมชาย', 'admin', '2015-01-13 21:18:43', '6');
+
+-- ----------------------------
+-- View structure for `v_patient`
+-- ----------------------------
+DROP VIEW IF EXISTS `v_patient`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_patient` AS select `patient`.`id` AS `id`,`patient`.`cid` AS `cid`,`mprename`.`name` AS `name`,`patient`.`fname` AS `fname`,`patient`.`lname` AS `lname`,`msex`.`name` AS `sex`,`patient`.`age` AS `age`,`patient`.`reg_date` AS `reg_date`,`mdisease`.`disease` AS `disease` from (((`patient` join `msex` on((`msex`.`id` = `patient`.`sex`))) join `mprename` on((`mprename`.`id` = `patient`.`prename`))) join `mdisease` on((`mdisease`.`id` = `patient`.`disease`))) ;
