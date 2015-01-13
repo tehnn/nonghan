@@ -21,24 +21,38 @@
 
         <div class="form-box" id="login-box">
             <div class="header">Sign In</div>
-            <form action="../../index.html" method="post">
-                <div class="body bg-gray">
-                    <div class="form-group">
-                        <input type="text" name="userid" class="form-control" placeholder="User ID"/>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="Password"/>
-                    </div>          
-                    <div class="form-group">
-                        <input type="checkbox" name="remember_me"/> Remember me
-                    </div>
+            <?php
+            $form = $this->beginWidget('CActiveForm', array(
+                'id' => 'login-form',
+                'enableClientValidation' => true,
+                'clientOptions' => array(
+                    'validateOnSubmit' => true,
+                ),
+            ));
+            ?>
+            
+            <div class="body bg-gray">
+                <div class="form-group">
+                    <?php echo $form->textField($model, 'username',array('class'=>'form-control','placeholder'=>'UserName')); ?>
+                    <?php echo $form->error($model, 'username'); ?>
                 </div>
-                <div class="footer">                                                               
-                    <button type="submit" class="btn bg-olive btn-block">Sign in</button>  
-                    <a href="" class="btn bg-orange btn-block">Cancel</a> 
+                <div class="form-group">
+                    
+                    <?php echo $form->passwordField($model,'password',array('class'=>'form-control','placeholder'=>'Password')); ?>
+		<?php echo $form->error($model,'password'); ?>
+                    
+                </div>          
+                <div class="form-group">
+                    <?php echo $form->checkBox($model,'rememberMe'); ?> Remember me
+                </div>
+            </div>
+            <div class="footer">  
 
-                </div>
-            </form>
+                <button type="submit" class="btn bg-olive btn-block">Sign in</button>  
+                <a href="" class="btn bg-orange btn-block">Cancel</a> 
+
+            </div>
+            <?php $this->endWidget(); ?>
 
 
         </div>
