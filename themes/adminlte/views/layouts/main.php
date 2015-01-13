@@ -40,7 +40,13 @@
                         <li class="dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-envelope"></i>
-                                <span class="label label-success">4</span>
+                                <span class="label label-success">
+                                    <?php
+                                        $data = Patient::model()->findAll('sex=2 and prename=1');
+                                        echo count($data);
+                                    ?>
+                                    
+                                </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">You have 4 messages</li>
@@ -228,7 +234,14 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>Jane Doe <i class="caret"></i></span>
+                                <span>
+                                    <?php if(Yii::app()->user->isGuest):?>
+                                    Guest
+                                    <?php else: ?>
+                                    <?php echo Yii::app()->user->name; ?>
+                                    <?php endif;?>
+                                    
+                                    <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
