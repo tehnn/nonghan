@@ -59,22 +59,27 @@ class MyController extends Controller {
         }
 
         $rawData = Yii::app()->db->createCommand($sql)->queryAll();
+        if (count($rawData) > 0) {
+            $dataProvider = new CArrayDataProvider($rawData, array(
+                'sort' => array(
+                    'attributes' => array_keys($rawData[0])
+                ),
+                'pagination' => array(
+                    'pageSize' => 2
+                )
+            ));
 
-        $dataProvider = new CArrayDataProvider($rawData, array(
-            'sort' => array(
-                'attributes' => array_keys($rawData[0])
-            ),
-            'pagination' => array(
-                'pageSize' => 2
-            )
-        ));
-
-        $this->render('rpt', array(
-            'model' => $dataProvider,
-            'd1' => $d1,
-            'd2' => $d2,
-            'sql'=>$sql
-        ));
+            $this->render('rpt', array(
+                'model' => $dataProvider,
+                'd1' => $d1,
+                'd2' => $d2,
+                'sql' => $sql
+            ));
+        }else{
+              $this->render('err',array(
+                  'sql'=>$sql
+              ));
+        }
     }
 
 }
