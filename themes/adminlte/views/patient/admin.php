@@ -45,16 +45,11 @@ $('#search-form').submit(function(){
                 <a class="btn btn-primary btn-flat" href="<?= $this->createUrl('create') ?>"><i class="glyphicon glyphicon-plus"></i> เพิ่มข้อมูล</a>
             </div>
             <div class="col-sm-3">
-                <?php
-                $form = $this->beginWidget('CActiveForm', array(
-                    'action' => Yii::app()->createUrl($this->route),
-                    'method' => 'get',
-                    'id'=>'search-form'
-                ));
-                ?>
-                <?php echo $form->textField($model, 'findtext'); ?>
-                <button type="submit" class="btn btn-flat btn-danger">ค้นหา</button>
-                <?php $this->endWidget(); ?>
+                
+                <form method="GET" id="search-form">
+                    <?php echo CHtml::activeTextField($model, 'findtext'); ?>
+                    <button type="submit" class="btn btn-flat btn-danger">ค้นหา</button>
+                </form>
             </div>
         </div>
         <br>
