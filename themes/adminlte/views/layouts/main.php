@@ -295,8 +295,8 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="index.html">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            <a href="<?php echo Yii::app()->createUrl('patient/admin');?>">
+                                <i class="fa fa-dashboard"></i> <span>รายชื่อ</span>
                             </a>
                         </li>
                         <li>

@@ -29,6 +29,29 @@ return array(
     ),
     // application components
     'components' => array(
+        'widgetFactory' => array(
+            'widgets' => array(
+                'CLinkPager' => array(
+                    'htmlOptions' => array(
+                        'class' => 'pagination'
+                    ),
+                    'header' => false,
+                    'maxButtonCount' => 5,
+                    'cssFile' => false,
+                ),
+                'CGridView' => array(
+                    'htmlOptions' => array(
+                        'class' => 'table-responsive'
+                    ),
+                    'pagerCssClass' => 'dataTables_paginate paging_bootstrap',
+                    'itemsCssClass' => 'table table-striped table-hover table-bordered',
+                    'cssFile' => false,
+                    'summaryCssClass' => 'dataTables_info',
+                    'summaryText' => 'Record {start} to {end} from {count} Records',
+                    'template' => '{items}<div class="row"><div class="col-md-5 col-sm-12">{summary}</div><div class="col-md-7 col-sm-12">{pager}</div></div><br />',
+                ),
+            ),
+        ),
         'clientScript' => array(
             'scriptMap' => array(
                 'jquery.js' => 'js/jquery-2.0.2.min.js',
