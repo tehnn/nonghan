@@ -27,16 +27,9 @@
 
 
 
-        Yii::app()->clientScript->registerScript('search', "
-
-$('#search-form').submit(function(){
-	$('#patient-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
+        Yii::app()->clientScript->registerScript('search', "///");
         ?>
+
 
 
 
@@ -45,11 +38,20 @@ $('#search-form').submit(function(){
                 <a class="btn btn-primary btn-flat" href="<?= $this->createUrl('create') ?>"><i class="glyphicon glyphicon-plus"></i> เพิ่มข้อมูล</a>
             </div>
             <div class="col-sm-3">
-                
+
                 <form method="GET" id="search-form">
                     <?php echo CHtml::activeTextField($model, 'findtext'); ?>
                     <button type="submit" class="btn btn-flat btn-danger">ค้นหา</button>
                 </form>
+
+                <script>
+                    $('#search-form').submit(function () {
+                        $('#patient-grid').yiiGridView('update', {
+                            data: $(this).serialize()
+                        });
+                        return false;
+                    });
+                </script>
             </div>
         </div>
         <br>
