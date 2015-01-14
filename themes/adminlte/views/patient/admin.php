@@ -70,6 +70,12 @@
                 ),
                 //'id',
                 'cid',
+                 array(
+                     'name'=>'cid',
+                     'value'=>function($data){?>
+        <a href="<?=Yii::app()->createUrl('patient/view',array('id'=>$data->id))?>"><?=$data->cid?></a>
+                     <?php }
+                 ),
                 array(
                     'name' => 'prename',
                     'value' => function($data, $row) {
