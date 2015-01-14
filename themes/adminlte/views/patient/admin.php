@@ -89,7 +89,9 @@
                     'name' => 'sex',
                     'value' => function ($data) {
                         echo $data->msex->name;
-                    }
+                    },
+                    'filter' =>FALSE
+                           
                 ),
                 array(
                     'name' => 'age',
